@@ -2,7 +2,7 @@
   <div>
     <div class="search">
       <input type="search" placeholder="文字を入力してください">
-      <button @click.prevent="searchImg">button</button>    
+      <button @click.prevent="searchImg">SEARCH</button>
     </div>
     <div class="filter">
       <input v-model="filterImg" placeholder="タグで絞り込む">
