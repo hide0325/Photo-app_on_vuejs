@@ -1,24 +1,24 @@
 <template>
   <div>
-    <div class="search">
+    <!-- <div class="search">
       <input type="search" placeholder="文字を入力してください">
       <button @click.prevent="searchImg">SEARCH</button>
-    </div>
-    <div class="filter">
+    </div> -->
+    <!-- <div class="filter">
       <input v-model="filterImg" placeholder="タグで絞り込む">
-    </div>
-    <div class="sort">    
+    </div> -->
+    <!-- <div class="sort">    
       <button @click="sortMany">ManyLikes</button>
       <button @click="sortFew">FewLikes</button>
-    </div>
-    <div v-if="imgs.length > 5" class="pager">
+    </div> -->
+    <!-- <div v-if="imgs.length > 5" class="pager">
       <button @click="topPage" :disabled="btnPrev">TOP</button>
       <button @click="prevPage" :disabled="btnPrev">PREV</button>
       <div>{{ currentPage }}/{{ totalPage }}</div>
       <button @click="nextPage" :disabled="btnNext">NEXT</button>
       <button @click="endPage" :disabled="btnNext">END</button>
-    </div>
-    <transition>
+    </div> -->
+    <!-- <transition>
       <div class="result" :key="filteredImgs">
         <div v-for="img in filteredImgs" :key="img.id">
           <p><i class="fas fa-heart fa-pink"></i>{{ img.likes }}</p>
@@ -26,13 +26,31 @@
           <a :href="img.pageURL" target="_blank"><img :src="img.previewURL"></a>
         </div>
       </div>
-    </transition>
+    </transition> -->
+    <Search />
+    <Filter />
+    <Sort />
+    <Pager />
+    <Result />
   </div>
 </template>
 
 <script>
+import Search from '@/components/Search.vue'
+import Filter from '@/components/Filter.vue'
+import Sort from '@/components/Sort.vue'
+import Pager from '@/components/Pager.vue'
+import Result from '@/components/Result.vue'
+
 export default {
   name: 'home',
+  components: {
+    Search,
+    Filter,
+    Sort,
+    Pager,
+    Result
+  },
   data() {
     return {
       imgs: [],
