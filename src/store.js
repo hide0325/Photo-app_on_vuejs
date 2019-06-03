@@ -14,6 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setLoading(state, isLoading) {
+      // console.log(isLoading)
       state.loading = isLoading
     },
     searchImg(state, json) {

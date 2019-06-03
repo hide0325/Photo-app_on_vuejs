@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <Loading />
     <Search />
     <Match />
@@ -32,6 +32,7 @@ export default {
 
 <style lang="stylus">
 #app
+  position relative
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
