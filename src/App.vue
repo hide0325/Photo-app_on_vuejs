@@ -1,15 +1,31 @@
 <template>
-  <div id="app">
-    <Home />
+  <div>
+    <Loading />
+    <Search />
+    <Match />
+    <Sort />
+    <Pager />
+    <Result />
   </div>
 </template>
 
 <script>
-import Home from '@/views/Home.vue'
+import Loading from '@/components/Loading.vue'
+import Search from '@/views/Search.vue'
+import Match from '@/views/Match.vue'
+import Sort from '@/views/Sort.vue'
+import Pager from '@/views/Pager.vue'
+import Result from '@/views/Result.vue'
 
 export default {
+  name: 'App',
   components: {
-    Home
+    Loading,
+    Search,
+    Match,
+    Sort,
+    Pager,
+    Result
   }
 }
 </script>
