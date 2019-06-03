@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    loading: false,
     imgs: [],
     matchImg: '',
     currentPage: 1,
@@ -12,6 +13,9 @@ export default new Vuex.Store({
     btnPrev: true
   },
   mutations: {
+    setLoading(state, isLoading) {
+      state.loading = isLoading
+    },
     searchImg(state, json) {
       // console.log(json)
       state.imgs = [];
@@ -43,7 +47,7 @@ export default new Vuex.Store({
     endPage(state) {
       const maxPage = Math.ceil(state.imgs.length / state.viewRange);
       state.currentPage = maxPage;     
-    }
+    },
   },
   actions: {
     searchImg({ commit }, event ) {
@@ -52,16 +56,21 @@ export default new Vuex.Store({
       let option = '&orientation=horizontal&per_page=50';
       let keyword = '&q=' + encodeURIComponent( event.target.previousElementSibling.value );
       let URL = baseUrl + keyword + option;
+      commit('setLoading', true);
       fetch( URL )
-        .then(( data ) => data.json())
-        .then(( json ) => {
-          if (json.totalHits > 0) {
-            commit('searchImg', { json })
+      .then(( data ) => { 
+        commit('setLoading', false);
+        return data.json() 
+      })
+      .then(( json ) => {
+        if (json.totalHits > 0) {
+          commit('searchImg', { json });
           } else {
-            alert('nothing...')
+            alert('nothing...');
           }
         })
         .catch(() => {
+          commit('setLoading', false);
           alert('is error...');
         });     
     }
