@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -52,28 +53,37 @@ export default new Vuex.Store({
   },
   actions: {
     searchImg({ commit }, event ) {
-      let API_KEY = '12654185-9ddf6ac2004d8209b3b3e202c';
-      let baseUrl = 'https://pixabay.com/api/?key=' + API_KEY;
-      let option = '&orientation=horizontal&per_page=50';
-      let keyword = '&q=' + encodeURIComponent( event.target.previousElementSibling.value );
-      let URL = baseUrl + keyword + option;
+
+      const API_KEY = '12654185-9ddf6ac2004d8209b3b3e202c';
+      const baseUrl = 'https://pixabay.com/api/?key=' + API_KEY;
+      const option = '&orientation=horizontal&per_page=50';
+      const keyword = '&q=' + encodeURIComponent( event.target.previousElementSibling.value );
+      const URL = baseUrl + keyword + option;
+
       commit('setLoading', true);
-      fetch( URL )
-      .then(( data ) => { 
+
+      async function asyncFnc () {
+        const res = await axios.get(URL);
         commit('setLoading', false);
-        return data.json() 
-      })
-      .then(( json ) => {
-        if (json.totalHits > 0) {
-          commit('searchImg', { json });
+        return res.data;
+        // console.log(res.data);
+      }
+
+      asyncFnc()
+        .then((json) => {
+          // console.log(json)
+          if (json.totalHits > 0) {
+            commit('searchImg', { json });
           } else {
-            alert('nothing...');
+            alert('noting...');
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           commit('setLoading', false);
           alert('is error...');
-        });     
+        });
+
     }
   },
   getters: {
