@@ -1,16 +1,24 @@
 <template>
-  <div id="app">
-    <Loading />
-    <Search />
-    <Match />
-    <Sort />
-    <Pager />
-    <Result />
-  </div>
+  <v-app>
+    <v-content>
+      <v-container>
+        <div id="app">
+          <Title />
+          <Loading />
+          <Search />
+          <Match />
+          <Sort />
+          <Pager />
+          <Result />
+        </div>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
 import Loading from '@/components/Loading.vue'
+import Title from '@/views/Title.vue'
 import Search from '@/views/Search.vue'
 import Match from '@/views/Match.vue'
 import Sort from '@/views/Sort.vue'
@@ -21,6 +29,7 @@ export default {
   name: 'App',
   components: {
     Loading,
+    Title,
     Search,
     Match,
     Sort,
