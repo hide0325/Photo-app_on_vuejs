@@ -1,17 +1,17 @@
 <template>
   <transition>
     <div class="result" :key="filteredImgs">
-      <div class="result-box" v-for="img in filteredImgs" :key="img.id">
-        <p class="result-box__txt">
+      <div class="result-box mb-3" v-for="img in filteredImgs" :key="img.id">
+        <div class="result-box__txt">
           <i class="fas fa-heart fa-pink"></i>
           {{ img.likes }}
-        </p>
-        <p class="result-box__txt">
-          <i class="fas fa-tag fa-blue "></i>
+        </div>
+        <div class="result-box__txt">
+          <i class="fas fa-tag fa-purple "></i>
           {{ img.tags }}
-        </p>
+        </div>
         <a class="result-box__link" :href="img.pageURL" target="_blank">
-          <img class="result-box__link__img" :src="img.previewURL">
+          <img class="result-box__link__img" :src="img.largeImageURL">
         </a>
       </div>
     </div>
@@ -54,7 +54,7 @@ export default {
   margin 0 7px
 .fa-pink
   color #ff7a8e
-.fa-blue
+.fa-purple
   color #be70e6
 
 .v-enter-active

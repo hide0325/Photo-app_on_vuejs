@@ -41,8 +41,6 @@ export default {
 
 <style lang="stylus">
 #app
-  width 50%
-  margin auto
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale

@@ -1,7 +1,7 @@
 <template>
-  <div class="search">
-    <input type="search" placeholder="文字を入力してください">
-    <button @click="searchImg">SEARCH</button>
+  <div class="search mb-3">
+    <input class="search__input" type="search" placeholder="文字を入力してください">
+    <button class="search__btn" @click="searchImg">SEARCH</button>
   </div> 
 </template>
 
@@ -19,5 +19,20 @@ export default {
 <style lang="stylus" scoped>
 .search
   display flex
-  justify-content space-between
+  justify-content flex-end
+  &__input
+    border 1px solid #8c8c8c
+    border-radius 2px
+    padding: 5px
+    margin-right 7px
+  &__btn
+    background #2c3e50
+    border-radius 6px
+    box-shadow 0px 3px 1px -2px rgba(0,0,0,0.2),
+               0px 2px 2px 0px rgba(0,0,0,0.14),
+               0px 1px 5px 0px rgba(0,0,0,0.12)
+    padding: 5px 15px
+    color #FFF
+    &:hover
+      opacity .7
 </style>

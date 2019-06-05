@@ -1,10 +1,10 @@
 <template>
-  <div v-if="imgs.length > 5" class="pager">
-    <button @click="topPage" :disabled="btnPrev">TOP</button>
-    <button @click="prevPage" :disabled="btnPrev">PREV</button>
-    <div>{{ currentPage }}/{{ totalPage }}</div>
-    <button @click="nextPage" :disabled="btnNext">NEXT</button>
-    <button @click="endPage" :disabled="btnNext">END</button>
+  <div v-if="imgs.length > 5" class="pager mb-3">
+    <v-btn @click="topPage" :disabled="btnPrev">TOP</v-btn>
+    <v-btn @click="prevPage" :disabled="btnPrev">PREV</v-btn>
+    <div class="pager__state subheading">{{ currentPage }} / {{ totalPage }}</div>
+    <v-btn @click="nextPage" :disabled="btnNext">NEXT</v-btn>
+    <v-btn @click="endPage" :disabled="btnNext">END</v-btn>
   </div>  
 </template>
 
@@ -26,6 +26,12 @@ export default {
 <style lang="stylus" scoped>
 .pager
   display flex
-  justify-content space-between
+  justify-content space-around
+  &__state
+    display flex
+    align-items center
+
+.v-btn
+  min-width min-content
 </style>
 
