@@ -39,6 +39,7 @@ export default {
   display flex
   flex-direction column
   &__txt
+    display flex
     word-break break-all
   &__link
     margin-top auto
@@ -50,7 +51,7 @@ export default {
       padding 5px
 
 .fas
-  margin-right 3px
+  margin 0 7px
 .fa-pink
   color #ff7a8e
 .fa-blue
