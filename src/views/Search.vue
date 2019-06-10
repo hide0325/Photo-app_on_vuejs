@@ -1,8 +1,8 @@
 <template>
-  <div class="search mb-3">
-    <input class="search__input" type="search" placeholder="文字を入力してください">
-    <button class="search__btn" @click="searchImg">SEARCH</button>
-  </div> 
+  <form class="search mb-3">
+    <input class="search__input" ref="test" placeholder="文字を入力してください">
+    <button class="search__btn" @click.prevent="searchImg">SEARCH</button>
+  </form> 
 </template>
 
 <script>
@@ -12,7 +12,11 @@ export default {
   name: 'Search',
   methods: {
     ...mapActions(['searchImg'])
-  }
+  },
+  // mounted() {
+  //   const test = this.$refs.test.innerHTML
+  //   this.searchImg(test)
+  // }
 }
 </script>
 
