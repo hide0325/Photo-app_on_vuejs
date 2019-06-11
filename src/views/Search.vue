@@ -1,8 +1,8 @@
 <template>
   <form class="search mb-3">
-    <input class="search__input" ref="test" placeholder="文字を入力してください">
-    <button class="search__btn" @click.prevent="searchImg">SEARCH</button>
-  </form> 
+    <input class="search__input" placeholder="文字を入力してください">
+    <button class="search__btn" ref="btn" @click.prevent="searchImg">SEARCH</button>
+  </form>  
 </template>
 
 <script>
@@ -11,12 +11,12 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Search',
   methods: {
-    ...mapActions(['searchImg'])
+    ...mapActions(['mountSearchImg', 'searchImg'])
   },
-  // mounted() {
-  //   const test = this.$refs.test.innerHTML
-  //   this.searchImg(test)
-  // }
+  mounted() {
+    const btn = this.$refs.btn.previousElementSibling.value
+    this.mountSearchImg(btn)
+  }
 }
 </script>
 

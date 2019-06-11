@@ -52,6 +52,39 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    mountSearchImg({ commit }, mountValue ) {
+
+      const API_KEY = '12654185-9ddf6ac2004d8209b3b3e202c';
+      const baseUrl = 'https://pixabay.com/api/?key=' + API_KEY;
+      const option = '&orientation=horizontal&per_page=50';
+      const keyword = '&q=' + encodeURIComponent( mountValue );
+      const URL = baseUrl + keyword + option;
+
+      commit('setLoading', true);
+
+      async function asyncFnc() {
+        const res = await axios.get(URL);
+        commit('setLoading', false);
+        return res.data;
+        // console.log(res.data);
+      }
+
+      asyncFnc()
+        .then((json) => {
+          // console.log(json)
+          if (json.totalHits > 0) {
+            commit('searchImg', { json });
+          } else {
+            alert('noting...');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          commit('setLoading', false);
+          alert('is error...');
+        });
+
+    },
     searchImg({ commit }, event ) {
 
       const API_KEY = '12654185-9ddf6ac2004d8209b3b3e202c';
@@ -62,7 +95,7 @@ export default new Vuex.Store({
 
       commit('setLoading', true);
 
-      async function asyncFnc () {
+      async function asyncFnc() {
         const res = await axios.get(URL);
         commit('setLoading', false);
         return res.data;
