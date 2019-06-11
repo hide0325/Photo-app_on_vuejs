@@ -1,6 +1,6 @@
 <template>
   <transition>
-    <div class="result" :key="filteredImgs">
+    <div class="result" :key="currentPage">
       <div class="result-box mb-3" v-for="img in filteredImgs" :key="img.id">
         <div class="result-box__txt">
           <i class="fas fa-heart fa-pink"></i>
@@ -19,11 +19,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'Result',
   computed: {
+    ...mapState(['currentPage']),
     ...mapGetters(['filteredImgs'])
   }
 }
