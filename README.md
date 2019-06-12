@@ -1,4 +1,5 @@
 # Portfolio on Vue.js
-Vue.jsとPixabayAPIを利用した画像検索アプリです。
+Vue.jsとPixabayAPIで制作した画像検索アプリです。
 
-※非同期処理を試してみたかったので
+デモサイト
+https://photo-app-on-vuejs.netlify.com/
