@@ -26,16 +26,6 @@ export default new Vuex.Store({
         state.imgs.push(img)
       })
     },
-    sortMany(state){
-      state.imgs.sort((a, b) => {
-        return b.likes - a.likes;
-      })
-    },
-    sortFew(state){
-      state.imgs.sort((a, b) => {
-        return a.likes - b.likes;
-      })
-    },
     prevPage(state) {
       if (state.currentPage > 1) state.currentPage--;
     },

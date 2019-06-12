@@ -21,7 +21,6 @@ import Loading from '@/components/Loading.vue'
 import Title from '@/views/Title.vue'
 import Search from '@/views/Search.vue'
 import Match from '@/views/Match.vue'
-import Sort from '@/views/Sort.vue'
 import Pager from '@/views/Pager.vue'
 import Result from '@/views/Result.vue'
 
@@ -32,7 +31,6 @@ export default {
     Title,
     Search,
     Match,
-    Sort,
     Pager,
     Result
   }
