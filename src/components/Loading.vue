@@ -25,4 +25,5 @@ export default {
   justify-content center
   margin 0
   color #fff
+  z-index 9999
 </style>

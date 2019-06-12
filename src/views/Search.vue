@@ -1,6 +1,6 @@
 <template>
   <form class="search mb-3">
-    <input class="search__input" placeholder="文字を入力してください">
+    <input class="search__input" placeholder="検索">
     <button class="search__btn" ref="btn" @click.prevent="searchImg">SEARCH</button>
   </form>  
 </template>

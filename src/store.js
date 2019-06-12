@@ -11,7 +11,9 @@ export default new Vuex.Store({
     matchImg: '',
     currentPage: 1,
     viewRange: 12,
-    btnPrev: true
+    btnPrev: true,
+    baseUrl: 'https://pixabay.com/api/?key=12654185-9ddf6ac2004d8209b3b3e202c',
+    searchOption: '&orientation=horizontal&per_page=50'
   },
   mutations: {
     setLoading(state, isLoading) {
@@ -42,56 +44,26 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    mountSearchImg({ commit }, mountValue ) {
-
-      const API_KEY = '12654185-9ddf6ac2004d8209b3b3e202c';
-      const baseUrl = 'https://pixabay.com/api/?key=' + API_KEY;
-      const option = '&orientation=horizontal&per_page=50';
-      const keyword = '&q=' + encodeURIComponent( mountValue );
-      const URL = baseUrl + keyword + option;
-
-      commit('setLoading', true);
-
-      async function asyncFnc() {
-        const res = await axios.get(URL);
-        commit('setLoading', false);
-        // console.log(res.data);
-        return res.data;
-      }
-
-      asyncFnc()
-        .then((json) => {
-          // console.log(json)
-          if (json.totalHits > 0) {
-            commit('searchImg', { json });
-          } else {
-            alert('noting...');
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          commit('setLoading', false);
-          alert('is error...');
-        });
-
+    mountSearchImg({ dispatch  }, initialValue ) {
+      const keyword = '&q=' + encodeURIComponent( initialValue );
+      dispatch('fetchData', keyword );
     },
-    searchImg({ commit }, event ) {
-
-      const API_KEY = '12654185-9ddf6ac2004d8209b3b3e202c';
-      const baseUrl = 'https://pixabay.com/api/?key=' + API_KEY;
-      const option = '&orientation=horizontal&per_page=50';
+    searchImg({ dispatch }, event ) {
       const keyword = '&q=' + encodeURIComponent( event.target.previousElementSibling.value );
-      const URL = baseUrl + keyword + option;
+      dispatch('fetchData', keyword);
+    },
+    fetchData({ commit, state }, keyword) {
 
-      commit('setLoading', true);
+      // console.log(keyword)
+      const URL = state.baseUrl + keyword + state.searchOption;
 
       async function asyncFnc() {
+        commit('setLoading', true);
         const res = await axios.get(URL);
         commit('setLoading', false);
-        return res.data;
         // console.log(res.data);
+        return res.data;
       }
-
       asyncFnc()
         .then((json) => {
           // console.log(json)
