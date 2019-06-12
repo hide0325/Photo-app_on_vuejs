@@ -11,7 +11,9 @@
           {{ img.tags }}
         </div>
         <a class="result-box__link" :href="img.pageURL" target="_blank">
-          <img class="result-box__link__img" :src="img.largeImageURL">
+          <v-card class="ma-2">
+            <v-img aspect-ratio="1" :src="img.previewURL"></v-img>
+          </v-card>
         </a>
       </div>
     </div>
@@ -36,7 +38,7 @@ export default {
   flex-wrap wrap
 
 .result-box
-  flex-basis 50%
+  flex-basis 25%
   display flex
   flex-direction column
   &__txt
@@ -46,10 +48,6 @@ export default {
     margin-top auto
     &:hover
       opacity .7
-    &__img
-      width 100%
-      box-sizing border-box
-      padding 5px
 
 .fas
   margin 0 7px

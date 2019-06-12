@@ -10,7 +10,7 @@ export default new Vuex.Store({
     imgs: [],
     matchImg: '',
     currentPage: 1,
-    viewRange: 10,
+    viewRange: 12,
     btnPrev: true
   },
   mutations: {
@@ -55,8 +55,8 @@ export default new Vuex.Store({
       async function asyncFnc() {
         const res = await axios.get(URL);
         commit('setLoading', false);
-        return res.data;
         // console.log(res.data);
+        return res.data;
       }
 
       asyncFnc()

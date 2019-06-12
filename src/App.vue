@@ -7,7 +7,6 @@
           <Loading />
           <Search />
           <Match />
-          <Sort />
           <Pager />
           <Result />
         </div>
