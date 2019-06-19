@@ -1,33 +1,62 @@
 <template>
-  <transition>
-    <div class="result" :key="currentPage">
-      <div class="result-box mb-3" v-for="img in filteredImgs" :key="img.id">
-        <div class="result-box__txt">
-          <i class="fas fa-heart fa-pink"></i>
-          {{ img.likes }}
-        </div>
-        <div class="result-box__txt">
-          <i class="fas fa-tag fa-purple "></i>
-          {{ img.tags }}
-        </div>
-        <a class="result-box__link" :href="img.pageURL" target="_blank">
-          <v-card class="ma-2">
-            <v-img aspect-ratio="1" :src="img.previewURL"></v-img>
-          </v-card>
-        </a>
+  <transition-group
+    class="result"
+    tag="div"
+    @before-enter="beforeEnter"
+    @enter="enter"
+    :css="false"
+  >
+    <div
+      class="result-box mb-3"
+      v-for="(img, index) in filteredImgs"
+      :key="img.id"
+      :data-index="index"
+    >
+      <div class="result-box__txt">
+        <i class="fas fa-heart fa-pink"></i>
+        {{ img.likes }}
       </div>
+      <div class="result-box__txt">
+        <i class="fas fa-tag fa-purple"></i>
+        {{ img.tags }}
+      </div>
+      <a
+        class="result-box__link"
+        :href="img.pageURL"
+        target="_blank"
+      >
+        <v-card class="ma-2">
+          <v-img aspect-ratio="1" :src="img.previewURL"></v-img>
+        </v-card>
+      </a>
     </div>
-  </transition>  
+  </transition-group> 
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Result',
   computed: {
-    ...mapState(['currentPage']),
     ...mapGetters(['filteredImgs'])
+  },
+  methods: {
+    beforeEnter(el) {
+      el.classList.add('v-enter');
+    },
+    enter(el, done) {
+      let delay = el.dataset.index * 100;
+      setTimeout(() => {
+        el.classList.remove('v-enter')
+        el.classList.add('v-enter-active')
+      }, delay)
+      // after-enter、after-leaveフックに遷移させるにはdoneをsetTimeoutで指定する
+      // setTimeout(done, 2000)
+    }
+    // afterEnter(el) {
+    //   el.style.background = 'tomato';
+    // }
   }
 }
 </script>
@@ -56,9 +85,8 @@ export default {
 .fa-purple
   color #be70e6
 
-.v-enter-active
-  transition opacity .8s
 .v-enter
   opacity 0
+.v-enter-active
+  transition opacity .8s
 </style>
-
